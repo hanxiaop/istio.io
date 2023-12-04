@@ -6,10 +6,10 @@ attribution: "Gergő Huszty (IBM)"
 keywords: [traffic-management,gateway,mesh,mtls,egress,remote]
 ---
 
-If you are using Istio to handle application-originated traffic to destinations outside of the mesh, you're probably familiar with the concept of egress gateways.
-Egress gateways can be used to monitor and forward traffic from mesh-internal applications to locations outside of the mesh.
+If you are using Istio to handle application-originated traffic to destinations outside the mesh, you're probably familiar with the concept of egress gateways.
+Egress gateways can be used to monitor and forward traffic from mesh-internal applications to locations outside the mesh.
 This is a useful feature if your system is operating in a restricted
-environment and you want to control what can be reached on the public internet from your mesh.
+environment, and you want to control what can be reached on the public internet from your mesh.
 
 The use-case of configuring an egress gateway to handle arbitrary wildcard domains had been included in the [official Istio docs](https://archive.istio.io/v1.13/docs/tasks/traffic-management/egress/wildcard-egress-hosts/#wildcard-configuration-for-arbitrary-domains) up until version 1.13, but was subsequently removed because the documented solution was not officially supported or recommended and was subject to breakage in future versions of Istio.
 Nevertheless, the old solution was still usable with Istio versions before 1.20. Istio 1.20, however, dropped some Envoy functionality that was required for the approach to work.
@@ -41,8 +41,8 @@ This way, any compromised application pod will still only be able to access the 
 
 ## Low-level Envoy programming to the rescue
 
-Recent Envoy releases include a dynamic TCP forward proxy solution that uses the SNI header on a per-
-connection basis to determine the target of an application request. While an Istio `VirtualService` cannot configure a target like this, we are able to use
+Recent Envoy releases include a dynamic TCP forward proxy solution that uses the SNI header on a per-connection basis to 
+determine the target of an application request. While an Istio `VirtualService` cannot configure a target like this, we are able to use
 `EnvoyFilter`s to alter the Istio generated routing instructions so that the SNI header is used to determine the target.
 
 To make it all work, we start by configuring a custom egress gateway to listen for the outbound traffic. Using
