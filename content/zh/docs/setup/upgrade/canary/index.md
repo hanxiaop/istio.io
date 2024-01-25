@@ -71,7 +71,7 @@ istio-sidecar-injector-canary   2          114s
 ## 数据平面 {#data-plane}
 
 请参阅[网关金丝雀升级](/zh/docs/setup/additional-setup/gateway/#canary-upgrade-advanced)，
-以了解如何运行 Istio Gateway 的特定修订版本的实例。在此示例中，由于我们使用了 `default` Istio
+以了解如何运行 Istio Gateway 的特定修订版本的实例。在此示例中，由于使用了 `default` Istio
 配置文件，因此 Istio Gateway 不运行特定修订版本的实例，而是原地升级以使用新的控制平面修订版本。
 您可以通过运行以下命令来验证 `istio-ingress` Gateway 是否正在使用 `canary` 修订版本：
 
